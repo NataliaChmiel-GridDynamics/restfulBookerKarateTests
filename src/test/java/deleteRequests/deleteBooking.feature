@@ -4,11 +4,10 @@ Feature: Create auth token for booking
     * url 'https://restful-booker.herokuapp.com'
 
   Scenario: Creates a new auth token to use for access to the PUT and DELETE /booking
-    Given path 'auth'
+    Given path 'booking/1'
     And header Content-Type = 'application/json'
-    And request { "username": "admin", "password": "password123" }
-    When method POST
+    And header Authorization = 'Basic YWRtaW46cGFzc3dvcmQxMjM='
+    When method DELETE
     Then status 200
     And print 'Response:', response
-    * def token = response.token
-    And print 'Saved Token:', token
+
